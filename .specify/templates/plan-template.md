@@ -40,7 +40,26 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+Verify the plan upholds each Core Principle from `.specify/memory/constitution.md`
+(v1.0.0). Mark each gate PASS / FAIL / N/A and link to evidence. Any FAIL must
+be either resolved before Phase 0 or recorded in **Complexity Tracking** below
+with explicit justification.
+
+- [ ] **I. Code Quality & Type Safety** — TypeScript strict; Zod schemas in
+  `packages/shared`; no new `any` casts; ESLint/Prettier clean.
+- [ ] **II. Test-First Development (NON-NEGOTIABLE)** — Unit, component,
+  contract, integration, and (where applicable) Playwright E2E tests planned
+  before implementation; coverage floor (80% api/shared, 100% interactive UI)
+  preserved.
+- [ ] **III. User Experience Consistency** — UI uses Tailwind + shadcn/ui +
+  Radix only; Lucide icons; shared `<Status>`/`<Progress>`/`<RoleBadge>`
+  components reused; all copy via `react-i18next` (PT-BR default).
+- [ ] **IV. Accessibility by Default (WCAG 2.1 AA)** — Keyboard-operable;
+  Radix-based primitives; axe-core zero violations; Lighthouse a11y ≥ 95 on
+  affected public routes.
+- [ ] **V. Performance & Real-Time Responsiveness** — Respects TTI < 3 s, JS
+  payload < 250 KB gz/route, API p95 < 300 ms read / < 500 ms write, WS p95
+  < 1 s; TanStack Query for fetching; Prisma with pooling; no introduced N+1s.
 
 ## Project Structure
 

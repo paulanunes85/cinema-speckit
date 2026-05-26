@@ -9,7 +9,7 @@ description: "Task list template for feature implementation"
 
 **Prerequisites**: plan.md (required), spec.md (required for user stories), research.md, data-model.md, contracts/
 
-**Tests**: The examples below include test tasks. Tests are OPTIONAL - only include them if explicitly requested in the feature specification.
+**Tests**: Per Constitution v1.0.0, Principle II (Test-First Development — NON-NEGOTIABLE), test tasks are REQUIRED for every story: unit (Vitest), component (RTL) where UI is touched, contract (REST + WS) where the API surface changes, integration where Postgres/Redis/Blob is touched, and Playwright E2E for critical paths. Tests MUST be written and failing before their implementation tasks.
 
 **Organization**: Tasks are grouped by user story to enable independent implementation and testing of each story.
 
@@ -149,13 +149,14 @@ Examples of foundational tasks (adjust based on your project):
 
 ## Phase N: Polish & Cross-Cutting Concerns
 
-**Purpose**: Improvements that affect multiple user stories
+**Purpose**: Improvements that affect multiple user stories, plus the cross-cutting Constitution gates (Principles III–V).
 
-- [ ] TXXX [P] Documentation updates in docs/
-- [ ] TXXX Code cleanup and refactoring
-- [ ] TXXX Performance optimization across all stories
-- [ ] TXXX [P] Additional unit tests (if requested) in tests/unit/
-- [ ] TXXX Security hardening
+- [ ] TXXX [P] Documentation updates in docs/ and i18n keys (PT-BR) in `apps/web/src/locales/`
+- [ ] TXXX Code cleanup and refactoring (no new `any`; ESLint/Prettier clean)
+- [ ] TXXX [P] **UX consistency check** — confirm only shadcn/ui + Radix + Tailwind tokens + Lucide icons are used; shared `<Status>`/`<Progress>`/`<RoleBadge>` reused
+- [ ] TXXX [P] **Accessibility gate** — axe-core zero violations on E2E; Lighthouse a11y ≥ 95 on affected public routes; keyboard-only smoke pass
+- [ ] TXXX [P] **Performance gate** — Lighthouse TTI < 3 s; route JS payload < 250 KB gz; API p95 < 300 ms read / < 500 ms write; WS event p95 < 1 s
+- [ ] TXXX Security hardening (RBAC, rate limiting, CSRF, audit log, LGPD review)
 - [ ] TXXX Run quickstart.md validation
 
 ---
